@@ -23,29 +23,39 @@
 					class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 				>
 					<li>
-						<a class="btn btn-accent text-zinc-700"
+						<RouterLink to="/game" class="btn btn-accent text-zinc-700"
 							>Play<i class="fa-solid fa-play"></i
-						></a>
+						></RouterLink>
 					</li>
 					<li>
-						<a class="btn btn-ghost text-fuchsia-600">Manage words</a>
+						<RouterLink to="/" class="btn btn-ghost text-fuchsia-600"
+							>Manage words</RouterLink
+						>
 					</li>
 				</ul>
 			</div>
-			<a class="btn btn-ghost normal-case text-xl">Hangman Game</a>
+			<RouterLink to="/" class="btn btn-ghost normal-case text-xl"
+				>Hangman Game</RouterLink
+			>
 		</div>
 		<div class="navbar-center hidden lg:flex">
 			<ul class="menu menu-horizontal px-1">
 				<li>
-					<a class="btn btn-accent text-zinc-700"
+					<RouterLink to="/game" class="btn btn-accent text-zinc-700"
 						>Play<i class="fa-solid fa-play"></i
-					></a>
+					></RouterLink>
 				</li>
-				<li><a class="btn btn-ghost">Manage words</a></li>
+				<li>
+					<RouterLink to="/" class="btn btn-ghost"
+						>Manage words</RouterLink
+					>
+				</li>
 			</ul>
 		</div>
 		<div class="navbar-end">
-			<a class="btn glass text-gray-800">About</a>
+			<RouterLink to="/about" class="btn glass text-gray-800"
+				>About</RouterLink
+			>
 		</div>
 	</div>
 </template>

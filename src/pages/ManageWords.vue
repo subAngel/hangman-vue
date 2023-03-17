@@ -14,20 +14,25 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, onBeforeMount, ref } from "vue";
 import AddWord from "../components/FormAddWord.vue";
 import Word from "../components/Word.vue";
 
 const words = ref(["GUACAMOLE"]);
 
+onBeforeMount(() => {
+	var array = localStorage.getItem("words");
+	words.value = array.split(",");
+});
+
 const deleteWord = (index) => {
 	console.log(words.value[index], index);
 	words.value = words.value.filter((value, i) => i != index);
-	localStorage.setItem("words", JSON.stringify(words));
+	localStorage.setItem("words", words.value);
 };
 
 const addWord = (word) => {
 	words.value.push(word);
-	localStorage.setItem("words", JSON.stringify(words));
+	localStorage.setItem("words", words.value);
 };
 </script>
