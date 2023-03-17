@@ -6,7 +6,7 @@
 	>
 		<Word
 			v-for="(w, i) in words"
-			:word="w.toUpperCase()"
+			:word="w"
 			@delete="deleteWord(i)"
 			v-bind:key="i"
 		/>
@@ -14,18 +14,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import AddWord from "../components/FormAddWord.vue";
 import Word from "../components/Word.vue";
 
-const words = ref(["Guacamole"]);
+const words = ref(["GUACAMOLE"]);
 
 const deleteWord = (index) => {
 	console.log(words.value[index], index);
 	words.value = words.value.filter((value, i) => i != index);
+	localStorage.setItem("words", JSON.stringify(words));
 };
 
 const addWord = (word) => {
 	words.value.push(word);
+	localStorage.setItem("words", JSON.stringify(words));
 };
 </script>

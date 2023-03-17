@@ -13,7 +13,7 @@
 				<button
 					class="btn btn-primary"
 					@click.prevent="
-						addWord(word);
+						addWord(word.toUpperCase().replace(' ', '_'));
 						word = '';
 					"
 					:disabled="word === ''"
@@ -33,6 +33,7 @@ const emit = defineEmits(["add"]);
 const word = ref("");
 
 function addWord(word) {
+	// word.value();
 	emit("add", word);
 }
 </script>
