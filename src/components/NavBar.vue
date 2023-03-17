@@ -46,7 +46,7 @@
 					></RouterLink>
 				</li>
 				<li>
-					<RouterLink to="/" class="btn btn-ghost"
+					<RouterLink to="/" class="btn btn-ghost ml-4"
 						>Manage words</RouterLink
 					>
 				</li>
