@@ -1,5 +1,5 @@
 <template>
-	<div class="alert shadow-lg w-60">
+	<div class="alert shadow-lg w-60 sm:w-48">
 		<div>
 			<i class="fa-solid fa-caret-right"></i>
 			<div>

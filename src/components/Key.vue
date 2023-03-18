@@ -1,5 +1,7 @@
 <template>
-	<button class="uppercase kbd">{{ tecla }}</button>
+	<button class="uppercase kbd" @click="$emit('pressed', tecla)">
+		{{ tecla }}
+	</button>
 </template>
 
 <script setup>
@@ -9,5 +11,6 @@ const props = defineProps({
 		type: String,
 	},
 });
+
 const emit = defineEmits(["pressed"]);
 </script>
