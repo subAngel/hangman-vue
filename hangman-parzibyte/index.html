@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="./css/style.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <nav class="navbr navbar-expand-md navbar-dark bg-success fixed-top">
+            <a href="#" target="_blank" class="navbar-brand">Hangman Game</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                id="botonMenu" aria-label="Mostrar u ocultar menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a href="index.html" class="nav-link">
+                            Play&nbsp;
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="words.html" class="nav-link">Manage words&nbsp;
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="navbar-item active">
+                        <a href="" class="nav-link">Support
+                            <i class="fa fa-hands-helping"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="container-fluid">
+            <div class="row" id="app">
+                <div class="col-12 text-center">
+                    <h1 class="text-success">Hangman game</h1>
+                    <br class="displayed-word">WORD: <br>{{ displayWord() }}</h3>
+                    <p class="h4 text-danger">Remaining attemps: {{remainingAttempts}}</p>
+                    <br>
+                    <img :src="imagePath()" alt="" class="img-fluid">
+                </div>
+                <div class="col-12 text-center">
+                    <button :disabled="letter.disabled"
+                    @click="attemptWithLetter(letter.letter)"
+                    v-for="letter in letters"
+                    class="btn btn-success m-1 btn-lg">
+                        {{letter.letter}}
+                    </button>
+                </div>
+            </div>
+        </main>
+
+    </body>
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="js/game.js"></script>
+</html>
