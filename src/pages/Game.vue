@@ -11,10 +11,25 @@
 			class="my-4 fixed left-8"
 		/>
 
+		<!-- * MODAL -->
+		<label for="my-modal-4" class="btn">open modal</label>
+
+		<!-- Put this part before </body> tag -->
+		<input type="checkbox" id="my-modal-4" class="modal-toggle" />
+		<label for="my-modal-4" class="modal cursor-pointer">
+			<label
+				class="modal-box relative flex flex-col justify-center items-center"
+				for=""
+			>
+				<h3 class="text-lg font-bold text-center">Congratulations!!!</h3>
+				<button class="btn btn-primary w-48">Restart game</button>
+			</label>
+		</label>
+
 		<!-- * ahorcado -->
 		<div class="mt-8">
-			<span class="letter" v-for="item in wordDisplayed">
-				{{ item }}
+			<span class="letter" v-for="letter in wordDisplayed">
+				{{ letter }}
 			</span>
 		</div>
 
@@ -59,12 +74,14 @@ onMounted(() => {
 	// reiniciar el juego
 	game.value = true;
 	secretWord.value = getRandomWord.value;
-	wordDisplayed.value = secretWord.value.length;
+	wordDisplayed.value = secretWord.value.map((letter) => "_");
 	win.value = false;
 	lose.value = false;
 	mistakes.value = 0;
 	hits.value = 0;
 	keybuttons.value = [];
+	console.log(secretWord.value);
+	console.log(wordDisplayed.value);
 });
 
 const getRandomWord = computed(() => {
@@ -74,11 +91,25 @@ const getRandomWord = computed(() => {
 const letterInput = (key, index) => {
 	if (game.value) {
 		keybuttons.value[index] = true;
+		let countflag = 0;
 		for (let i = 0; i <= getRandomWord.value.length; i++) {
-			console.log(key, getRandomWord.value[i]);
+			// console.log(key, getRandomWord.value[i]);
 			if (key === getRandomWord.value[i]) {
+				wordDisplayed.value[i] = key;
+				countflag++;
 				hits.value++;
 			}
+		}
+		if (countflag == 0) {
+			mistakes.value++;
+		}
+		if (hits.value === getRandomWord.value.length) {
+			win.value = true;
+			game.value = false;
+		}
+		if (hits.value === ATTEMPTS) {
+			lose.value = true;
+			game.value = false;
 		}
 	}
 };
@@ -91,6 +122,6 @@ const letterInput = (key, index) => {
 	position: relative;
 	text-align: center;
 	font-weight: bold;
-	border-bottom: 2px solid black;
+	/* border-bottom: 2px solid black; */
 }
 </style>
