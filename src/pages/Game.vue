@@ -1,44 +1,27 @@
 <template>
 	<div class="container mx-auto flex flex-col items-center w-full">
-		<h2 class="uppercase text-center text-4xl mt-5">hangman Game</h2>
+		<h2 class="uppercase text-center self-start text-4xl mt-5">hangman Game</h2>
 
 		<!-- * ahorcado -->
 		<div>
-			{{ secretWord }}
+			<span class="letter" v-for="letter in getRandomWord">
+				{{ letter }}
+			</span>
 		</div>
 
 		<!-- * teclas -->
 		<div class="fixed bottom-0 w-full mx-auto">
-			<div class="flex justify-center gap-1 my-2 w-auto mx-auto">
+			<div class="flex justify-center gap-2 my-2 mx-auto w-1/3 flex-wrap">
 				<Key
 					v-for="(k, i) in keys1"
 					:tecla="k"
 					v-bind:key="i"
-					@pressed="teclaPresionada(k)"
+					@pressed="letterInput(k, i)"
 				/>
 			</div>
+
 			<div class="flex justify-center gap-1 my-2 w-auto mx-auto">
-				<Key
-					v-for="(k, i) in keys2"
-					:tecla="k"
-					v-bind:key="i"
-					@pressed="teclaPresionada(k)"
-				/>
-			</div>
-			<div class="flex justify-center gap-1 my-2 w-auto mx-auto">
-				<Key
-					v-for="(k, i) in keys3"
-					:tecla="k"
-					v-bind:key="i"
-					@pressed="teclaPresionada(k)"
-				/>
-			</div>
-			<div class="flex justify-center gap-1 my-2 w-auto mx-auto">
-				<Key
-					class="capitalize"
-					tecla="Space"
-					@pressed="teclaPresionada('_')"
-				/>
+				<Key class="capitalize" tecla="Space" @pressed="letterInput('_')" />
 			</div>
 		</div>
 	</div>
@@ -47,28 +30,67 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import Key from "../components/Key.vue";
 
-const alphabet1 = ref("QWERTYUIOP");
-const alphabet2 = ref("ASDFGHJKL");
-const alphabet3 = ref("ZXCVBNM");
-const keys1 = ref(alphabet1.value.split(""));
-const keys2 = ref(alphabet2.value.split(""));
-const keys3 = ref(alphabet3.value.split(""));
+const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+const keys1 = ref(alphabet.value.split(""));
 
+// * propiedades del juego
 const words = ref(localStorage.getItem("words").split(","));
-const secretWord = ref("");
-
-const teclaPresionada = (keycap) => {
-	console.log(keycap);
-};
+const secretWord = ref([]);
+const game = ref(true);
+const win = ref(false);
+const lose = ref(false);
+const ATTEMPTS = 5;
+const mistakes = ref(0);
+const hits = ref(0);
 
 onMounted(() => {
-	secretWord.value = getRandomWord();
+	// reiniciar el juego
+	game.value = true;
+	win.value = false;
+	lose.value = false;
+	mistakes.value = 0;
+	hits.value = 0;
+	// secretWord.value = getRandomWord();
+	// console.log(secretWord.value);
+	console.log(getRandomWord.value);
 });
 
-const getRandomWord = () => {
-	return words.value[Math.floor(Math.random() * words.value.length)];
+const getRandomWord = computed(() => {
+	return words.value[Math.floor(Math.random() * words.value.length)].split("");
+});
+
+const letterInput = (letra, index) => {
+	if (game.value) {
+		for (i = 0; i < getRandomWord.value.length; i++) {
+			if (letter == getRandomWord[i]) {
+				hits.value += 1;
+			}
+		}
+	}
 };
 </script>
+
+<style scoped>
+.letter {
+	margin: 0 5px;
+	font-size: 23px;
+	position: relative;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 2px solid black;
+}
+/* .letter::after {
+	content: " ";
+	display: block;
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	text-align: center;
+	border-bottom: 1px solid black;
+	min-width: 12px;
+} */
+</style>

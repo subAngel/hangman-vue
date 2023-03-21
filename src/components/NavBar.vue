@@ -23,9 +23,9 @@
 					class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 				>
 					<li>
-						<RouterLink to="/game" class="btn btn-accent text-zinc-700"
-							>Play<i class="fa-solid fa-play"></i
-						></RouterLink>
+						<RouterLink to="/game" class="btn btn-accent text-zinc-700">
+							Play<i class="fa-solid fa-play"></i>
+						</RouterLink>
 					</li>
 					<li>
 						<RouterLink to="/" class="btn btn-ghost text-fuchsia-600"
@@ -60,6 +60,14 @@
 	</div>
 </template>
 
-<script setup></script>
+<script>
+export default {
+	methods: {
+		reRender() {
+			window.location.reload();
+		},
+	},
+};
+</script>
 
 <style></style>
