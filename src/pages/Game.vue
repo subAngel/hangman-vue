@@ -12,19 +12,6 @@
 		/>
 
 		<!-- * MODAL -->
-		<label for="my-modal-4" class="btn">open modal</label>
-
-		<!-- Put this part before </body> tag -->
-		<input type="checkbox" id="my-modal-4" class="modal-toggle" />
-		<label for="my-modal-4" class="modal cursor-pointer">
-			<label
-				class="modal-box relative flex flex-col justify-center items-center"
-				for=""
-			>
-				<h3 class="text-lg font-bold text-center">Congratulations!!!</h3>
-				<button class="btn btn-primary w-48">Restart game</button>
-			</label>
-		</label>
 
 		<!-- * ahorcado -->
 		<div class="mt-8">
