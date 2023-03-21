@@ -1,13 +1,12 @@
 <template>
-	<div class="stats shadow w-3/12">
-		<div class="stat">
-			<div class="stat-title">Hits</div>
-
-			<div class="stat-value text-primary">{{ ModelHits }}</div>
+	<div class="stats shadow-xl w-1/5 text-center flex bg-accent">
+		<div class="stat w-2/4">
+			<div class="stat-title font-bold">Hits</div>
+			<div class="stat-value text-primary text-center">{{ ModelHits }}</div>
 		</div>
-		<div class="stat">
-			<div class="stat-title">Mistakes</div>
-			<div class="stat-value text-error">{{ modelMistakes }}</div>
+		<div class="stat w-2/4">
+			<div class="stat-title font-bold">Mistakes</div>
+			<div class="stat-value text-error text-center">{{ modelMistakes }}</div>
 		</div>
 	</div>
 </template>

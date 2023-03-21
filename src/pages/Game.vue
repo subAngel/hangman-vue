@@ -8,7 +8,7 @@
 		<Stats
 			v-model:ModelHits="hits"
 			v-bind:model-mistakes="mistakes"
-			class="my-4"
+			class="my-4 fixed left-2s"
 		/>
 
 		<!-- * ahorcado -->
@@ -97,15 +97,4 @@ const letterInput = (key, index) => {
 	font-weight: bold;
 	border-bottom: 2px solid black;
 }
-/* .letter::after {
-	content: " ";
-	display: block;
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 1px;
-	text-align: center;
-	border-bottom: 1px solid black;
-	min-width: 12px;
-} */
 </style>
