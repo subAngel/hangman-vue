@@ -3,15 +3,14 @@
 		tabindex="-1"
 		role="button"
 		aria-disabled="true"
-		class="uppercase kbd kbd-lg md:kbd-md font-mono bg-lime-400"
+		class="uppercase btn btn-accent w-auto h-4 md:kbd-md font-mono bg-lime-400"
 		@click="keyClick()"
-		:disabled="disableKeyOnClick"
-		:class="[disableKeyOnClick ? 'bg-lime-100' : '']"
 	>
 		{{ tecla }}
 	</button>
 </template>
-
+<!--
+		:class="[disabled ? 'bg-lime-100' : '']" -->
 <script setup>
 import { ref, reactive } from "vue";
 
@@ -29,7 +28,7 @@ const disableKeyOnClick = ref(false);
 // * emitir un evento
 function keyClick() {
 	emit("pressed", props.tecla);
-	disableKeyOnClick.value = true;
+	// disableKeyOnClick.value = true;
 }
 
 // const disabledOnClick = ref(false);

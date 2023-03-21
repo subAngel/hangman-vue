@@ -8,7 +8,7 @@
 		<Stats
 			v-model:ModelHits="hits"
 			v-bind:model-mistakes="mistakes"
-			class="my-4 fixed left-2s"
+			class="my-4 fixed left-2"
 		/>
 
 		<!-- * ahorcado -->
@@ -19,23 +19,24 @@
 		</div>
 
 		<!-- * teclas -->
-		<div class="fixed bottom-0 w-full mx-auto">
+		<div class="fixed bottom-0 w-full mx-auto mb-4">
 			<div class="flex justify-center gap-2 my-2 mx-auto w-1/3 flex-wrap">
 				<Key
 					v-for="(key, index) in keys"
 					:tecla="key"
 					v-bind:key="index"
+					v-bind:disabled="keybuttons[index]"
 					@pressed="letterInput(key, index)"
 				/>
 			</div>
 
-			<div class="flex justify-center gap-1 my-2 w-auto mx-auto">
+			<!-- <div class="flex justify-center gap-1 my-2 w-auto mx-auto">
 				<Key
 					class="capitalize"
 					tecla="Space"
 					@pressed="letterInput('_', 60)"
 				/>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -53,6 +54,7 @@ const keys = ref(alphabet.value.split(""));
 // * propiedades del juego
 const words = ref(localStorage.getItem("words").split(","));
 const secretWord = ref([]);
+const keybuttons = ref([]);
 const game = ref(true);
 const win = ref(false);
 const lose = ref(false);
@@ -78,6 +80,7 @@ const getRandomWord = computed(() => {
 
 const letterInput = (key, index) => {
 	if (game.value) {
+		keybuttons.value[index] = true;
 		for (let i = 0; i <= getRandomWord.value.length; i++) {
 			console.log(key, getRandomWord.value[i]);
 			if (key === getRandomWord.value[i]) {
