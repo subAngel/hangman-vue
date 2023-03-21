@@ -1,7 +1,7 @@
 <template>
 	<div class="alert shadow-lg w-60 sm:w-48">
 		<div>
-			<i class="fa-solid fa-caret-right"></i>
+			<font-awesome-icon :icon="['fas', 'caret-right']" />
 			<div>
 				<h3 class="font-bold">{{ word }}</h3>
 			</div>
@@ -11,7 +11,7 @@
 				class="btn btn-ghost btn-sm"
 				@click="($event) => $emit('delete')"
 			>
-				<i class="fa-sharp fa-solid fa-delete-left"></i>
+				<font-awesome-icon :icon="['fas', 'delete-left']" />
 			</button>
 		</div>
 	</div>

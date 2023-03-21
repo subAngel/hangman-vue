@@ -3,20 +3,7 @@
 		<div class="navbar-start">
 			<div class="dropdown">
 				<label tabindex="0" class="btn btn-ghost lg:hidden">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-5 w-5"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M4 6h16M4 12h8m-8 6h16"
-						/>
-					</svg>
+					<font-awesome-icon :icon="['fas', 'bars']" size="xl" />
 				</label>
 				<ul
 					tabindex="0"
@@ -24,11 +11,13 @@
 				>
 					<li>
 						<RouterLink to="/game" class="btn btn-accent text-zinc-700">
-							Play<i class="fa-solid fa-play"></i>
+							Play<font-awesome-icon :icon="['fas', 'play']" />
 						</RouterLink>
 					</li>
 					<li>
-						<RouterLink to="/" class="btn btn-ghost text-fuchsia-600"
+						<RouterLink
+							to="/"
+							class="btn btn-ghost text-fuchsia-600 mt-2"
 							>Manage words</RouterLink
 						>
 					</li>
@@ -42,8 +31,8 @@
 			<ul class="menu menu-horizontal px-1">
 				<li>
 					<RouterLink to="/game" class="btn btn-accent text-zinc-700"
-						>Play<i class="fa-solid fa-play"></i
-					></RouterLink>
+						>Play<font-awesome-icon :icon="['fas', 'play']" bounce
+					/></RouterLink>
 				</li>
 				<li>
 					<RouterLink to="/" class="btn btn-ghost ml-4"

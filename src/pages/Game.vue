@@ -8,13 +8,13 @@
 		<Stats
 			v-model:ModelHits="hits"
 			v-bind:model-mistakes="mistakes"
-			class="my-4 fixed left-2"
+			class="my-4 fixed left-8"
 		/>
 
 		<!-- * ahorcado -->
-		<div>
-			<span class="letter" v-for="letter in getRandomWord">
-				{{ letter }}
+		<div class="mt-8">
+			<span class="letter" v-for="item in wordDisplayed">
+				{{ item }}
 			</span>
 		</div>
 
@@ -29,14 +29,6 @@
 					@pressed="letterInput(key, index)"
 				/>
 			</div>
-
-			<!-- <div class="flex justify-center gap-1 my-2 w-auto mx-auto">
-				<Key
-					class="capitalize"
-					tecla="Space"
-					@pressed="letterInput('_', 60)"
-				/>
-			</div> -->
 		</div>
 	</div>
 
@@ -54,6 +46,7 @@ const keys = ref(alphabet.value.split(""));
 // * propiedades del juego
 const words = ref(localStorage.getItem("words").split(","));
 const secretWord = ref([]);
+const wordDisplayed = ref([]);
 const keybuttons = ref([]);
 const game = ref(true);
 const win = ref(false);
@@ -65,13 +58,13 @@ const hits = ref(0);
 onMounted(() => {
 	// reiniciar el juego
 	game.value = true;
+	secretWord.value = getRandomWord.value;
+	wordDisplayed.value = secretWord.value.length;
 	win.value = false;
 	lose.value = false;
 	mistakes.value = 0;
 	hits.value = 0;
-	// secretWord.value = getRandomWord();
-	// console.log(secretWord.value);
-	console.log(getRandomWord.value);
+	keybuttons.value = [];
 });
 
 const getRandomWord = computed(() => {
@@ -94,7 +87,7 @@ const letterInput = (key, index) => {
 <style scoped>
 .letter {
 	margin: 0 5px;
-	font-size: 23px;
+	font-size: 32px;
 	position: relative;
 	text-align: center;
 	font-weight: bold;
