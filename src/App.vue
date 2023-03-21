@@ -1,10 +1,11 @@
 <template>
-	<NavBar />
-
-	<main>
-		<RouterView />
-		<!-- <ManageWords /> -->
-	</main>
+	<div class="h-screen overflow-hidden">
+		<NavBar />
+		<main class="h-full">
+			<RouterView />
+			<!-- <ManageWords /> -->
+		</main>
+	</div>
 </template>
 <script setup>
 import NavBar from "./components/NavBar.vue";
