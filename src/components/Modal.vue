@@ -6,7 +6,13 @@
 			for=""
 		>
 			<h3 class="text-lg font-bold text-center">{{ msg }}</h3>
-			<label for="my-modal" @click="$emit("restart")" class="btn btn-primary w-48 mx-auto mt-5">Restart game</label>
+			<label
+				for="my-modal"
+				@click="$emit('restart')"
+				class="btn btn-primary w-48 mx-auto mt-5"
+			>
+				Restart game
+			</label>
 		</label>
 	</label>
 </template>
