@@ -8,7 +8,9 @@
 		</div>
 		<div class="stat w-2/4 sm:w-full">
 			<div class="stat-title font-bold">Mistakes</div>
-			<div class="stat-value text-error text-center">{{ modelMistakes }}</div>
+			<div class="stat-value text-error text-center">
+				{{ modelMistakes }}
+			</div>
 		</div>
 	</div>
 </template>

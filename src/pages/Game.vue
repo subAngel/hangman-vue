@@ -29,7 +29,9 @@
 
 		<!-- * teclas -->
 		<div class="fixed bottom-0 w-full mx-auto mb-4">
-			<div class="flex justify-center gap-2 my-2 mx-auto w-1/3 flex-wrap">
+			<div
+				class="flex justify-center gap-2 my-2 mx-auto w-1/3 md:w-2/4 sm:w-4/5 flex-wrap"
+			>
 				<Key
 					v-for="(key, index) in keys"
 					:tecla="key"
@@ -43,10 +45,12 @@
 	<!-- * MODAL -->
 	<Modal :show="modalInfo.show">
 		<template v-slot:title>
-			<h3 class="font-bold text-xl">{{ modalInfo.title }}</h3>
+			<h3 class="font-bold text-2xl sm:text-lg text-slate-900">
+				{{ modalInfo.title }}
+			</h3>
 		</template>
 		<template v-slot:body>
-			<p class="text-center">{{ modalInfo.body }}</p>
+			<p class="text-center text-slate-900">{{ modalInfo.body }}</p>
 		</template>
 		<template v-slot:footer>
 			<RouterLink
@@ -129,14 +133,14 @@ const letterInput = (key, index) => {
 			win.value = true;
 			game.value = false;
 			modalInfo.title = "Congratulations!!!";
-			modalInfo.body = "Do you want to play again?";
+			modalInfo.body = "Let's play again!";
 			modalInfo.show = true;
 			// console.log(win.value);
 		}
 		if (mistakes.value === ATTEMPTS) {
 			lose.value = true;
 			game.value = false;
-			modalInfo.title = "Oh, tonto xd";
+			modalInfo.title = "Oh no, luck for the next";
 			modalInfo.body = "The secret word was " + secretWord.value.join("");
 			// console.log(secretWord.value);
 			modalInfo.show = true;
