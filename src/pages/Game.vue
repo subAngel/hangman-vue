@@ -5,13 +5,12 @@
 		</h2> -->
 
 		<!-- * stats -->
+
 		<Stats
 			v-model:ModelHits="hits"
 			v-bind:model-mistakes="mistakes"
 			class="my-4 fixed left-8"
 		/>
-
-		<!-- * MODAL -->
 
 		<!-- * ahorcado -->
 		<div class="mt-8">
@@ -33,14 +32,22 @@
 			</div>
 		</div>
 	</div>
+	<!-- * MODAL -->
+	<Modal
+		:show="modalInfo.show"
+		msg="Congratulations!!!"
+		body="Do you want to play again?"
+		@restart="restartGame"
+	/>
 
 	<!-- // keyboard-->
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, reactive } from "vue";
 import Key from "../components/Key.vue";
 import Stats from "../components/Stats.vue";
+import Modal from "../components/Modal.vue";
 
 const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 const keys = ref(alphabet.value.split(""));
@@ -53,9 +60,15 @@ const keybuttons = ref([]);
 const game = ref(true);
 const win = ref(false);
 const lose = ref(false);
-const ATTEMPTS = 5;
+const ATTEMPTS = 6;
 const mistakes = ref(0);
 const hits = ref(0);
+
+const modalInfo = reactive({
+	title: "",
+	body: "",
+	show: false,
+});
 
 onMounted(() => {
 	// reiniciar el juego
@@ -68,7 +81,7 @@ onMounted(() => {
 	hits.value = 0;
 	keybuttons.value = [];
 	console.log(secretWord.value);
-	console.log(wordDisplayed.value);
+	// console.log(wordDisplayed.value);
 });
 
 const getRandomWord = computed(() => {
@@ -77,11 +90,11 @@ const getRandomWord = computed(() => {
 
 const letterInput = (key, index) => {
 	if (game.value) {
-		keybuttons.value[index] = true;
 		let countflag = 0;
+		keybuttons.value[index] = true;
 		for (let i = 0; i <= getRandomWord.value.length; i++) {
 			// console.log(key, getRandomWord.value[i]);
-			if (key === getRandomWord.value[i]) {
+			if (key == getRandomWord.value[i]) {
 				wordDisplayed.value[i] = key;
 				countflag++;
 				hits.value++;
@@ -93,12 +106,23 @@ const letterInput = (key, index) => {
 		if (hits.value === getRandomWord.value.length) {
 			win.value = true;
 			game.value = false;
+			modalInfo.title = "Congratulations!!!";
+			modalInfo.body = "Do you want to play again?";
+			modalInfo.show = true;
+			// console.log(win.value);
 		}
-		if (hits.value === ATTEMPTS) {
+		if (mistakes.value === ATTEMPTS) {
 			lose.value = true;
 			game.value = false;
+			modalInfo.title = "Oh, tonto xd";
+			modalInfo.body = "The secret word was " + secretWord.value;
+			modalInfo.show = true;
 		}
 	}
+};
+
+const restartGame = () => {
+	console.log("click");
 };
 </script>
 
