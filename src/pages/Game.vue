@@ -22,7 +22,7 @@
 		<div>
 			<img
 				alt="imagenes del ahorcado"
-				class="w-56 mt-10 ease-out"
+				class="w-56 mt-10 ease-out transition"
 				:src="`../../public/images/frame-${mistakes}.png`"
 			/>
 		</div>
