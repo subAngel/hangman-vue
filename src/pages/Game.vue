@@ -62,6 +62,7 @@ import {
 	onMounted,
 	ref,
 	reactive,
+	defineEmits,
 	onBeforeMount,
 	getCurrentInstance,
 } from "vue";
@@ -85,8 +86,6 @@ const lose = ref(false);
 const ATTEMPTS = 6;
 const mistakes = ref(0);
 const hits = ref(0);
-
-const componentKey = ref(0);
 
 const modalInfo = reactive({
 	title: "",
@@ -136,12 +135,13 @@ const letterInput = (key, index) => {
 		}
 	}
 };
-
+const emit = defineEmits(["restartGame"]);
 const restartGame = () => {
 	console.log("restart game");
-	// componentKey.value += 1;
-	const instance = getCurrentInstance();
-	instance.proxy.$forceUpdate();
+	emit("restartGame");
+	// // componentKey.value += 1;
+	// const instance = getCurrentInstance();
+	// instance.proxy.$forceUpdate();
 };
 </script>
 
