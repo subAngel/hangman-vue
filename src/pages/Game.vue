@@ -19,6 +19,14 @@
 			</span>
 		</div>
 
+		<div>
+			<img
+				alt="imagenes del ahorcado"
+				class="w-56 mt-10 ease-out"
+				:src="`../../public/images/frame-${mistakes}.png`"
+			/>
+		</div>
+
 		<!-- * teclas -->
 		<div class="fixed bottom-0 w-full mx-auto mb-4">
 			<div class="flex justify-center gap-2 my-2 mx-auto w-1/3 flex-wrap">
@@ -130,7 +138,7 @@ const letterInput = (key, index) => {
 			game.value = false;
 			modalInfo.title = "Oh, tonto xd";
 			modalInfo.body = "The secret word was " + secretWord.value.join("");
-			console.log(secretWord.value);
+			// console.log(secretWord.value);
 			modalInfo.show = true;
 		}
 	}
