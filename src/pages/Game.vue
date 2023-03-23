@@ -69,6 +69,8 @@ import Key from "../components/Key.vue";
 import Stats from "../components/Stats.vue";
 import Modal from "../components/Modal.vue";
 
+// const emits = defineEmits["restartGame"];
+
 const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 const keys = ref(alphabet.value.split(""));
 
@@ -84,6 +86,8 @@ const ATTEMPTS = 6;
 const mistakes = ref(0);
 const hits = ref(0);
 
+const componentKey = ref(0);
+
 const modalInfo = reactive({
 	title: "",
 	body: "",
@@ -91,16 +95,14 @@ const modalInfo = reactive({
 });
 
 onMounted(() => {
-	// reiniciar el juego
-	// game.value = true;
-
-	secretWord.value = getRandomWord.value;
+	secretWord.value =
+		words.value[Math.floor(Math.random() * words.value.length)].split("");
 	wordDisplayed.value = secretWord.value.map((letter) => "_");
 });
 
-const getRandomWord = computed(() => {
-	return words.value[Math.floor(Math.random() * words.value.length)].split("");
-});
+// const getRandomWord = computed(() => {
+// 	return words.value[Math.floor(Math.random() * words.value.length)].split("");
+// });
 const letterInput = (key, index) => {
 	if (game.value) {
 		let countflag = 0;
@@ -136,7 +138,10 @@ const letterInput = (key, index) => {
 };
 
 const restartGame = () => {
-	console.log("click");
+	console.log("restart game");
+	// componentKey.value += 1;
+	const instance = getCurrentInstance();
+	instance.proxy.$forceUpdate();
 };
 </script>
 
