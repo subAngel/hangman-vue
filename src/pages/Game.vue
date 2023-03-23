@@ -41,13 +41,14 @@
 			<p class="text-center">{{ modalInfo.body }}</p>
 		</template>
 		<template v-slot:footer>
-			<label
+			<RouterLink
+				to="/game"
 				@click="
 					modalInfo.show = false;
 					restartGame();
 				"
 				class="btn btn-accent"
-				>Restart</label
+				>Restart Game</RouterLink
 			>
 		</template>
 	</Modal>
@@ -56,7 +57,14 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, reactive } from "vue";
+import {
+	computed,
+	onMounted,
+	ref,
+	reactive,
+	onBeforeMount,
+	getCurrentInstance,
+} from "vue";
 import Key from "../components/Key.vue";
 import Stats from "../components/Stats.vue";
 import Modal from "../components/Modal.vue";
@@ -84,22 +92,15 @@ const modalInfo = reactive({
 
 onMounted(() => {
 	// reiniciar el juego
-	game.value = true;
+	// game.value = true;
+
 	secretWord.value = getRandomWord.value;
 	wordDisplayed.value = secretWord.value.map((letter) => "_");
-	win.value = false;
-	lose.value = false;
-	mistakes.value = 0;
-	hits.value = 0;
-	keybuttons.value = [];
-	console.log(secretWord.value);
-	// console.log(wordDisplayed.value);
 });
 
 const getRandomWord = computed(() => {
 	return words.value[Math.floor(Math.random() * words.value.length)].split("");
 });
-
 const letterInput = (key, index) => {
 	if (game.value) {
 		let countflag = 0;
@@ -127,7 +128,8 @@ const letterInput = (key, index) => {
 			lose.value = true;
 			game.value = false;
 			modalInfo.title = "Oh, tonto xd";
-			modalInfo.body = "The secret word was " + secretWord.value;
+			modalInfo.body = "The secret word was " + secretWord.value.join("");
+			console.log(secretWord.value);
 			modalInfo.show = true;
 		}
 	}
