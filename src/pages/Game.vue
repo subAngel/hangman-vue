@@ -107,9 +107,9 @@ const letterInput = (key, index) => {
 	if (game.value) {
 		let countflag = 0;
 		keybuttons.value[index] = true;
-		for (let i = 0; i <= getRandomWord.value.length; i++) {
-			// console.log(key, getRandomWord.value[i]);
-			if (key == getRandomWord.value[i]) {
+		for (let i = 0; i <= secretWord.value.length; i++) {
+			// console.log(key, secretWord.value[i]);
+			if (key == secretWord.value[i]) {
 				wordDisplayed.value[i] = key;
 				countflag++;
 				hits.value++;
@@ -118,7 +118,7 @@ const letterInput = (key, index) => {
 		if (countflag == 0) {
 			mistakes.value++;
 		}
-		if (hits.value === getRandomWord.value.length) {
+		if (hits.value === secretWord.value.length) {
 			win.value = true;
 			game.value = false;
 			modalInfo.title = "Congratulations!!!";
