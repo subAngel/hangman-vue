@@ -33,12 +33,24 @@
 		</div>
 	</div>
 	<!-- * MODAL -->
-	<Modal
-		:show="modalInfo.show"
-		msg="Congratulations!!!"
-		body="Do you want to play again?"
-		@restart="restartGame"
-	/>
+	<Modal :show="modalInfo.show">
+		<template v-slot:title>
+			<h3 class="font-bold text-xl">{{ modalInfo.title }}</h3>
+		</template>
+		<template v-slot:body>
+			<p class="text-center">{{ modalInfo.body }}</p>
+		</template>
+		<template v-slot:footer>
+			<label
+				@click="
+					modalInfo.show = false;
+					restartGame();
+				"
+				class="btn btn-accent"
+				>Restart</label
+			>
+		</template>
+	</Modal>
 
 	<!-- // keyboard-->
 </template>
