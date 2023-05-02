@@ -9,4 +9,5 @@ export default defineConfig({
 			allow: ["."],
 		},
 	},
+	base: "/hangman-vue/",
 });
