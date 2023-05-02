@@ -1,51 +1,16 @@
-# Flujo de trabajo simple para implementar contenido estático en Github Pages
-name: Implementar contenido estático a Pages
+#!/usr/bin/env sh
 
-on:
-  # Se ejecuta en anotaciones dirigidas a la rama predeterminada
-  push:
-    branches: ['main']
+set -e
 
-  # Te permite ejecutar este flujo de trabajo manualmente desde la pestaña Acciones
-  workflow_dispatch:
+npm run build
 
-# Establece los permisos de GITHUB_TOKEN para permitir la implementación en GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+cd dist
 
-# Permite una implementación simultánea
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+git init
+git checkout -b main
+git add -A
+git commit -m 'deploy'
 
-jobs:
-  # Trabajo de implementación único ya que solo estamos implementando
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          # Subir repositorio dist
-          path: './dist'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+git push -f git@github.com:subAngel/hangman-vue.git prod:gh-pages
+
+cd -

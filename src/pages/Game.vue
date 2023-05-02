@@ -23,7 +23,7 @@
 			<img
 				alt="imagenes del ahorcado"
 				class="w-56 mt-10 ease-out transition"
-				:src="`/images/frame-${mistakes}.png`"
+				:src="`hangman-vue/images/frame-${mistakes}.png`"
 			/>
 		</div>
 
