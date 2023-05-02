@@ -27,12 +27,14 @@ import { onMounted, onBeforeMount, ref } from "vue";
 import AddWord from "../components/FormAddWord.vue";
 import Word from "../components/Word.vue";
 
-const words = ref(localStorage.getItem("words").split(","));
+const words = ref(
+	localStorage.getItem("words") ? localStorage.getItem("words").split(",") : []
+);
 const isWordsEmpty = ref(false);
 
 onBeforeMount(() => {
 	var array = localStorage.getItem("words");
-	words.value = array.split(",");
+	words.value = array ? array.split(",") : [];
 });
 
 const deleteWord = (index) => {

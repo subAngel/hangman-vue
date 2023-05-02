@@ -85,10 +85,12 @@ import Modal from "../components/Modal.vue";
 // const emits = defineEmits["restartGame"];
 
 const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-const keys = ref(alphabet.value.split(""));
+const keys = ref(alphabet.value ? alphabet.value.split("") : []);
 
 // * propiedades del juego
-const words = ref(localStorage.getItem("words").split(","));
+const words = ref(
+	localStorage.getItem("words") ? localStorage.getItem("words").split(",") : []
+);
 const secretWord = ref([]);
 const wordDisplayed = ref([]);
 const keybuttons = ref([]);
